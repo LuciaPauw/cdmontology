@@ -12,8 +12,20 @@
 #    Annotation properties
 #################################################################
 
+###  http://www.w3.org/2000/01/rdf-schema#subClassOf
+rdfs:subClassOf rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#equivalentClass
+owl:equivalentClass rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.w3.org/2004/02/skos/core#narrower
 <http://www.w3.org/2004/02/skos/core#narrower> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#related
@@ -24,13 +36,17 @@
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Biomass
-:Biomass rdf:type owl:Class ;
-         rdfs:comment """Non-fossilized and biodegradable organic material originating from plants, animals and micro-organisms, including:
-(a) Biomass residue;
-(b) The non-fossilized and biodegradable organic fractions of industrial and municipal wastes; and
-(c) The gases and liquids recovered from the decomposition of non-fossilized and biodegradable organic
-material."""@en .
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> rdf:type owl:Class ;
+                                                                     owl:equivalentClass :environment .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CPA
@@ -38,9 +54,22 @@ material."""@en .
      rdfs:label "CPA Project Activity"@en .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#GHGInventorySector
+:GHGInventorySector rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#LULUCF
+:LULUCF rdf:type owl:Class ;
+        rdfs:subClassOf :GHGInventorySector ;
+        owl:disjointUnionOf ( :forestry
+                              :landUse
+                              :landUseChange
+                            ) .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#above-groundBiomass
 :above-groundBiomass rdf:type owl:Class ;
-                     rdfs:subClassOf :Biomass ;
+                     rdfs:subClassOf :biomass ;
                      owl:disjointWith :below-groundBiomass ;
                      rdfs:comment "All living biomass above the soil including stem, stump, branches, bark, seeds, and foliage as well as herbaceous vegetation."@en .
 
@@ -55,12 +84,14 @@ Whether or not a CDM project activity or CPA is additional is determined in acco
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#afforestation
 :afforestation rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
                rdfs:comment "The direct human-induced conversion of land that has not been forested for a period of at least 50 years to forested land through planting, seeding and/or the human-induced promotion of natural seed sources."@en ;
                <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#agroforestry
 :agroforestry rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
               rdfs:comment "Growing of both trees and agricultural / horticultural crops on the same piece of land."@en ;
               <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
 
@@ -79,8 +110,17 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#below-groundBiomass
 :below-groundBiomass rdf:type owl:Class ;
-                     rdfs:subClassOf :Biomass ;
+                     rdfs:subClassOf :biomass ;
                      rdfs:comment "All living biomass of roots. Fine roots of less than (suggested) 2 mm diameter are often excluded because these often cannot be distinguished empirically from soil organic matter or litter."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#biomass
+:biomass rdf:type owl:Class ;
+         rdfs:comment """Non-fossilized and biodegradable organic material originating from plants, animals and micro-organisms, including:
+(a) Biomass residue;
+(b) The non-fossilized and biodegradable organic fractions of industrial and municipal wastes; and
+(c) The gases and liquids recovered from the decomposition of non-fossilized and biodegradable organic
+material."""@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#biomassExpansionFactor
@@ -106,16 +146,150 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R
               <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#deadwood
+:deadwood rdf:type owl:Class ;
+          rdfs:subClassOf :below-groundBiomass ;
+          rdfs:comment "All non-living woody biomass not contained in the litter, either standing, lying on the ground, or in the soil. Dead wood includes wood lying on the surface, dead roots, and stumps larger than or equal to 10 cm in diameter or any other diameter used by the country."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#emissionFactor
+:emissionFactor rdf:type owl:Class ;
+                rdfs:comment "EIE check related"@af ,
+                             "Measure of the average amount of GHG emitted to the atmosphere by a specific process, fuel, equipment, or source."@en ;
+                <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#energyEfficiency
+:energyEfficiency rdf:type owl:Class ;
+                  rdfs:comment """Energy efficiency is defined as the improvement in the service provided per unit power, for example, project activities which increase unit output of traction, work, electricity, heat, light (or fuel) per
+MW input are energy efficiency project activities."""@en ;
+                  <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#environment
+:environment rdf:type owl:Class ;
+             rdfs:comment "FIX kyk of hy forest subclass of environment infer"@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#feedstock
+:feedstock rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> ;
+           rdfs:comment "Gaseous, liquid or solid raw material used in manufacturing."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#forest
+:forest rdf:type owl:Class ;
+        rdfs:subClassOf :environment ;
+        rdfs:comment """A minimum area of land of 0.05 –1.0 hectare with tree crown cover (or equivalent stocking level) of more than 10-30 per cent with trees with the potential to reach a minimum height of 2 – 5 metres at maturity in situ and may include:
+(a) Either closed forest formations where trees of various storeys and undergrowth cover a high
+proportion of the ground or open forest;
+(b) Young natural stands and all plantations which have yet to reach a crown density of 10-30 per cent
+or tree height of 2-5 metres;
+(c) Areas normally forming part of the forest area which are temporarily unstocked as a result of human
+intervention such as harvesting or natural causes but which are expected to revert to forest.
+The definition of forest becomes applicable to a Party when:
+(a)For an Annex I Party, the Party selects a single minimum tree crown cover value between 10 and 30 percent, a single minimum land area value between 0.05 and 1 hectare and a single minimum tree height value between 2 and 5 metres, as provided under paragraph 16 of the Annex to decision 16/CMP.1;
+(b)For a non-Annex I Party, the Party selects a single minimum tree crown cover value between 10 and 30 per cent, a single minimum land area value between 0.05 and 1 hectare and a single minimum tree height value between 2 and 5 metres, as provided under paragraph 8 of the Annex to decision 5/CMP.1."""@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#forestry
+:forestry rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#fossilFuel
+:fossilFuel rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> ;
+            rdfs:comment "Fuels formed by natural resources such as anaerobic decomposition of buried dead organisms (e.g. coal, oil, and natural gas)."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#greenfieldFacility
+:greenfieldFacility rdf:type owl:Class ;
+                    rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                    rdfs:comment "The construction of a new facility at a location where previously no facility exists, for example, construction of new power plant at a site where previously no power generation activity exists."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#greenhouseGas
+:greenhouseGas rdf:type owl:Class ;
+               rdfs:comment "A greenhouse gas listed in Annex A to the Kyoto Protocol, unless otherwise specified in a particular methodology."@en ;
+               <http://www.w3.org/2004/02/skos/core#prefLabel> "GHG"@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#grid
+:grid rdf:type owl:Class ;
+      rdfs:comment "FIX aan wat van aia is hierdie related?"@en ,
+                   "The spatial extent of the power plants that are physically connected through transmission and distribution lines to the project activity (e.g. the renewable power plant location or the consumers where electricity is being saved) and that can be dispatched without significant transmission constraints."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#harvesting
+:harvesting rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+            rdfs:comment "Cutting and removal of trees from forests for timber or other uses. In sustainable forestry, harvesting is followed by planting or natural regeneration of the forest."@en ,
+                         """EIE: gebruik:
+cdm:harvesting a aia:Activity
+cdm:harvesting aia:isDoneBy aia:Iemand"""@af .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#industrialGas
+:industrialGas rdf:type owl:Class ;
+               rdfs:subClassOf :greenhouseGas ;
+               rdfs:comment "Greenhouse gases originating from chemical production processes that are not naturally occurring. In addition, N2O from chemical production processes is included in this group of greenhouse gases."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#landUse
+:landUse rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#landUseChange
+:landUseChange rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#leakage
+:leakage rdf:type owl:Class ;
+         rdfs:comment """For a CDM project activity (non-A/R) or PoA (non-A/R), the net change of anthropogenic emissions by sources of GHG which occurs outside the project boundary, and which is measurable and attributable to the CDM project activity or PoA, as applicable.
+For an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emissions by sources or decrease in carbon stock in carbon pools which occurs outside the boundary of an A/R or SSC A/R CDM project activity or PoA (A/R), as applicable, which is measurable and attributable to the A/R or SSC A/R CDM project activity or PoA (A/R), as applicable."""@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#litter
+:litter rdf:type owl:Class ;
+        rdfs:subClassOf :below-groundBiomass ;
+        rdfs:comment "Includes all non-living biomass with a diameter less than a minimum diameter chosen by the country (for example 10 cm), lying dead, in various states of decomposition above the mineral or organic soil. This includes the litter, fumic, and humic layers. Live fine roots (of less than the suggested diameter limit for below-ground biomass) are included in litter where they cannot be distinguished from it empirically."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#lowCarbonElectricity
+:lowCarbonElectricity rdf:type owl:Class ;
+                      rdfs:comment "Electricity that is generated using a less-GHG-intensive fuel than in the baseline (for example, electricity generated using natural gas in the project is low carbon electricity, when coal is used in the baseline for electricity generation)."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#meritOrder
+:meritOrder rdf:type owl:Class ;
+            rdfs:comment "A way of ranking existing power plants in ascending order of their short-run marginal costs of electricity generation, so that those with the lowest marginal costs are the first ones to be brought on line to meet demand and the plants with the highest marginal costs are the last to be brought on line."@en ;
+            <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#non-renewableBiomass
 :non-renewableBiomass rdf:type owl:Class ;
-                      rdfs:subClassOf :Biomass ;
+                      rdfs:subClassOf :biomass ;
                       owl:disjointWith :renewableBiomass ;
                       rdfs:comment "Biomass not fulfilling the conditions of renewable biomass is considered as non-renewable."@en .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#projectBoundary
+:projectBoundary rdf:type owl:Class ;
+                 rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the significant anthropogenic GHG emissions by sources under the control of the project participant that are reasonably attributable to the CDM project activity or CPA, as determined in accordance with the CDM rules and requirements.
+For an A/R or SSC A/R CDM project activity or CPA (A/R), geographically delineates the A/R or SSC A/R CDM project activity or CPA (A/R) under the control of the project participant as determined in accordance with the CDM rules and requirements."""@en ;
+                 <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#reforestation
+:reforestation rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+               rdfs:comment "The direct human-induced conversion of non-forested land to forested land through planting, seeding and/or the human-induced promotion of natural seed sources, on land that was forested but has been converted to non-forested land."@en .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#renewableBiomass
 :renewableBiomass rdf:type owl:Class ;
-                  rdfs:subClassOf :Biomass ;
+                  rdfs:subClassOf :biomass ;
                   rdfs:comment """Biomass which meets one of the following conditions:
 (a) The biomass originates from land areas that are forests where:
 (i) The land area remains a forest;
@@ -139,9 +313,54 @@ stocks may temporarily decrease due to harvesting); and
 (e) The biomass is the non-fossil fraction of an industrial or municipal waste."""@en .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#renewableEnergy
+:renewableEnergy rdf:type owl:Class ;
+                 rdfs:comment "Energy that comes from solar, wind, rain, tides, geothermal heat and biological sources which are renewable (naturally replenished) in nature."@en .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#residueBiomass
 :residueBiomass rdf:type owl:Class ;
-                rdfs:subClassOf :Biomass .
+                rdfs:subClassOf :biomass .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope
+:sectoralScope rdf:type owl:Class ;
+               rdfs:comment "The category of GHG source sectors or groups of activities that apply to CDM project activities or PoAs. It is based on the sectors and source categories set out in Annex A to the Kyoto Protocol. A CDM project activity or PoA may fall within more than one sectoral scope."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#soilOrganicCarbon
+:soilOrganicCarbon rdf:type owl:Class ;
+                   rdfs:comment "Organic carbon in mineral and organic soils (including peat) to a specified depth chosen by the country and applied consistently through the time series. Live fine roots (of less than the suggested diameter limit for below-ground biomass) are included with soil organic matter where they cannot be distinguished from it empirically."@en ;
+                   <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#standardisedBaseline
+:standardisedBaseline rdf:type owl:Class ;
+                      rdfs:comment "A baseline developed for a Party or a group of Parties, on a sub-national, national or group-of-countries basis rather than on a project basis, to facilitate the calculation of GHG emission reductions and removals by sinks and/or the determination of additionality for CDM project activities or PoAs, while providing assistance for assuring environmental integrity."@en ;
+                      <http://www.w3.org/2004/02/skos/core#related> :standardisedBaseline .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#suppressedDemand
+:suppressedDemand rdf:type owl:Class ;
+                  rdfs:comment "A scenario where future anthropogenic emissions by sources are projected to rise above current levels, due to the specific circumstances of the host Party."@en ;
+                  <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#trigeneration
+:trigeneration rdf:type owl:Class ;
+               rdfs:comment "Simultaneous generation of electrical energy and thermal energy in the form of cooling and heating in one process."@en ;
+               <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#wasteEnergy
+:wasteEnergy rdf:type owl:Class ;
+             rdfs:comment "Energy contained in a residual stream from industrial processes in the form of heat, chemical energy or pressure, for which it can be demonstrated that it would have been wasted in the absence of the project activity. Examples of waste energy include the energy contained in gases flared or released into the atmosphere, the heat or pressure from a residual stream not recovered (i.e. wasted)."@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#wetland
+:wetland rdf:type owl:Class ;
+         rdfs:subClassOf :environment ;
+         rdfs:comment "Area of land whose soil is saturated with moisture either permanently or seasonally."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#A/R
