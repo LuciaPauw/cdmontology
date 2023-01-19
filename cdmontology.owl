@@ -40,6 +40,14 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasParameter
+:hasParameter rdf:type owl:ObjectProperty ;
+              rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ,
+                          :MethodologicalTool ;
+              rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal> ;
+              rdfs:comment "EIE haal dalk later uit ten gunste van parval syntax soos in aia"@af .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasProjectBoundary
 :hasProjectBoundary rdf:type owl:ObjectProperty ;
                     rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
@@ -53,17 +61,28 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#usesTool
-:usesTool rdf:type owl:ObjectProperty .
+:usesTool rdf:type owl:ObjectProperty ;
+          rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+          rdfs:range :MethodologicalTool .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#calculatedExAnte
+:calculatedExAnte rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :EmissionFactor ;
+                  rdfs:range xsd:boolean ;
+                  rdfs:comment """If true, the emission factor is calculated ex ante (i.e. before the implementation of the project).
+If false, the emission factor is calculated ex post."""@en .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasBaselineScenario
 :hasBaselineScenario rdf:type owl:DatatypeProperty ;
                      rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
                      rdfs:range xsd:string ;
+                     owl:propertyDisjointWith :hasProjectScenario ;
                      <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> .
 
 
@@ -78,6 +97,12 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 :hasScale rdf:type owl:DatatypeProperty ;
           rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#methAppliesWhere
+:methAppliesWhere rdf:type owl:DatatypeProperty ;
+                  rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                  rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#typeOfMitigationAction
@@ -101,6 +126,10 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology
 <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal> rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource
@@ -234,7 +263,8 @@ MW input are energy efficiency project activities."""@en ;
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Leakage
 :Leakage rdf:type owl:Class ;
          rdfs:comment """For a CDM project activity (non-A/R) or PoA (non-A/R), the net change of anthropogenic emissions by sources of GHG which occurs outside the project boundary, and which is measurable and attributable to the CDM project activity or PoA, as applicable.
-For an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emissions by sources or decrease in carbon stock in carbon pools which occurs outside the boundary of an A/R or SSC A/R CDM project activity or PoA (A/R), as applicable, which is measurable and attributable to the A/R or SSC A/R CDM project activity or PoA (A/R), as applicable."""@en .
+For an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emissions by sources or decrease in carbon stock in carbon pools which occurs outside the boundary of an A/R or SSC A/R CDM project activity or PoA (A/R), as applicable, which is measurable and attributable to the A/R or SSC A/R CDM project activity or PoA (A/R), as applicable."""@en ;
+         <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#LowCarbonElectricity
@@ -248,8 +278,8 @@ For an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emi
             <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#MethodologicalTools
-:MethodologicalTools rdf:type owl:Class .
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#MethodologicalTool
+:MethodologicalTool rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#ProjectBoundary
@@ -558,7 +588,7 @@ whether as a whole project or as a part of a project."""@en ;
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#tool07
 :tool07 rdf:type owl:NamedIndividual ,
-                 :MethodologicalTools ;
+                 :MethodologicalTool ;
         rdfs:label "Tool to calculate the emission factor for an electricity system"@en ;
         rdfs:seeAlso <http://cdm.unfccc.int/methodologies/PAmethodologies/tools/am-tool-07-v7.0.pdf> .
 
