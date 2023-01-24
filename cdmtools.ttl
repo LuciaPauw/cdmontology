@@ -1,0 +1,25 @@
+@prefix : <http://purl.org/aiaontology#> .
+@prefix cdmo: <http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology> .
+@prefix dbp: <http://dbpedia.org/page/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdgo: <http://metadata.un.org/sdg/ontology> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <http://aia-projects.org/cdmtools/> .
+
+<tool03> a cdmo:MethodologicalTool ;
+    rdfs:label "Tool to calculate project or leakage CO2 emissions from fossil fuel combustion" ;
+    rdfs:seeAlso <http://cdm.unfccc.int/methodologies/PAmethodologies/tools/am-tool-03-v3.pdf> ;
+    skos:definition """This tool provides procedures to calculate project and/or leakage CO2 emissions from the combustion of fossil fuels.
+It can be used in cases where CO2 emissions from fossil fuel combustion are calculated based on the quantity of fuel combusted and its properties.
+Methodologies using this tool should specify to which combustion process j this tool is being applied."""^^xsd:string ;
+    cdmo:hasVersion "03.0"^^xsd:string ;
+    :hasParameter [:hasName "PEsub(FC, j, y)" ;
+        :hasUnitOfMeasure "tCOsub(2)/yr" ;
+        skos:definition "COsub(2) emissions from fossil fuel combustion in process j during the year y"] .
+    #TODO how to add description of formula? is it even necessary?
+

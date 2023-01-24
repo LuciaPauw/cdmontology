@@ -1,0 +1,31 @@
+@prefix : <http://purl.org/aiaontology#> .
+@prefix cdmo: <http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology> .
+@prefix cdmt: <http://aia-projects.org/cdmtools/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <http://aia-projects.org/cdmmethodologies/> .
+
+<AMS-I.D.> a :Methodology ;
+    rdfs:hasLabel "Grid connected renewable electricity generation" ;
+    rdfs:seeAlso <https://cdm.unfccc.int/methodologies/DB/W3TINZ7KKWCK7L8WTXFQQOFQQH4SBK> ;
+    cdmo:hasVersion "18.0"^^xsd:string ;
+    cdmo:hasScale "small"^^xsd:string ;
+    cdmo:hasSectoralScope cdmo:sectoralScope1 ;
+    cdmo:usesTool cdmt:tool03 ;
+    cdmo:hasEmissionMitigationType "Renewable energy. Displacement of electricity that would be provided to the grid by more-GHG-intensive means." ;
+    :validationParameter
+        [:hasName "Grid emission factor (can also be monitored ex post)"^^xsd:string],
+        [:hasName "Moisture content of biomass of homogeneous quality shall be determined ex ante."^^xsd:string ;
+            :calculatedExAnte "true"^^xsd:boolean] ;
+    :monitoredParameter
+        [:hasName "Quantity of net electricity supplied to the grid"^^xsd:string],
+        [:hasName "Quantity of biomass/fossil fuel consumed"^^xsd:string],
+        [:hasName "Net calorific value of biomass shall be determined once in the first year of the crediting period."^^xsd:string] .
+
+<conditionsWhereApplicable> a :Condition ;
+    :conditionDefinedBy "Combined heat and power generation is not eligible (AMS-I.C. can be used here); Special conditions apply for reservoir-based hydro plants."^^xsd:string ;
+    rdfs:seeAlso <AMS-I.C.> .
+
+<AMS-I.D.> cdmo:hasConditions <conditionsWhereApplicable> ;
+    cdmo:hasBaselineScenario "Electricity provided to the grid by more-GHG-intensive means."^^xsd:string ;
+    cdmo:hasProjectScenario "Electricity is generated and supplied to the grid using renewable energy technologies."^^xsd:string .

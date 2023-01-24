@@ -24,6 +24,10 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 <http://www.w3.org/2004/02/skos/core#broader> rdf:type owl:AnnotationProperty .
 
 
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.w3.org/2004/02/skos/core#narrower
 <http://www.w3.org/2004/02/skos/core#narrower> rdf:type owl:AnnotationProperty .
 
@@ -40,12 +44,25 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasParameter
-:hasParameter rdf:type owl:ObjectProperty ;
-              rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ,
-                          :MethodologicalTool ;
-              rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal> ;
-              rdfs:comment "EIE haal dalk later uit ten gunste van parval syntax soos in aia"@af .
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ,
+                                                                                  :MethodologicalTool ;
+                                                                      rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ;
+                                                                      rdfs:comment "EIE haal dalk later uit ten gunste van parval syntax soos in aia"@af .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#conditionFor
+:conditionFor rdf:type owl:ObjectProperty ;
+              owl:inverseOf :hasConditions ;
+              rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition> ;
+              rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasConditions
+:hasConditions rdf:type owl:ObjectProperty ;
+               rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+               rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasProjectBoundary
@@ -60,10 +77,27 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
                   rdfs:range :SectoralScope .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#monitoredParameter
+:monitoredParameter rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#toolUsedIn
+:toolUsedIn rdf:type owl:ObjectProperty ;
+            owl:inverseOf :usesTool ;
+            rdfs:domain :MethodologicalTool ;
+            rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#usesTool
 :usesTool rdf:type owl:ObjectProperty ;
           rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
           rdfs:range :MethodologicalTool .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#validationParameter
+:validationParameter rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter> .
 
 
 #################################################################
@@ -72,7 +106,8 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#calculatedExAnte
 :calculatedExAnte rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :EmissionFactor ;
+                  rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ,
+                              :EmissionFactor ;
                   rdfs:range xsd:boolean ;
                   rdfs:comment """If true, the emission factor is calculated ex ante (i.e. before the implementation of the project).
 If false, the emission factor is calculated ex post."""@en .
@@ -86,6 +121,13 @@ If false, the emission factor is calculated ex post."""@en .
                      <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasEmissionMitigationType
+:hasEmissionMitigationType rdf:type owl:DatatypeProperty ;
+                           rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                           rdfs:range xsd:string ;
+                           rdfs:comment "FIX: maak dalk later 'n object property"@af .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasProjectScenario
 :hasProjectScenario rdf:type owl:DatatypeProperty ;
                     rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
@@ -95,14 +137,22 @@ If false, the emission factor is calculated ex post."""@en .
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasScale
 :hasScale rdf:type owl:DatatypeProperty ;
-          rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+          rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ,
+                      <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
           rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#methAppliesWhere
-:methAppliesWhere rdf:type owl:DatatypeProperty ;
-                  rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
-                  rdfs:range xsd:string .
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasTypicalProjects
+:hasTypicalProjects rdf:type owl:DatatypeProperty ;
+                    rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasVersion
+:hasVersion rdf:type owl:DatatypeProperty ;
+            rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ,
+                        :MethodologicalTool ;
+            rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#typeOfMitigationAction
@@ -120,37 +170,74 @@ If false, the emission factor is calculated ex post."""@en .
 <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Agent
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Agent> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Calculation
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Calculation> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition> rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment
 <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> rdf:type owl:Class .
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal> rdf:type owl:Class .
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource
 <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State
+<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Additional
 :Additional rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> ;
             rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the effect of the CDM project activity or CPA to reduce anthropogenic GHG emissions below the level that would have occurred in the absence of the CDM project activity or CPA; or
 For an A/R or SSC CPA (A/R), the effect of the A/R or SSC A/R CDM project activity or CPA (A/R) to increase actual net GHG removals by sinks above the sum of the changes in carbon stocks in the carbon pools within the project boundary that would have occurred in the absence of the A/R or SSC CPA (A/R).
-Whether or not a CDM project activity or CPA is additional is determined in accordance with the CDM rules and requirements."""@en ;
-            <http://www.w3.org/2004/02/skos/core#broader> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+Whether or not a CDM project activity or CPA is additional is determined in accordance with the CDM rules and requirements."""@en .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Afforestation
+:Afforestation rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+               rdfs:comment "The direct human-induced conversion of land that has not been forested for a period of at least 50 years to forested land through planting, seeding and/or the human-induced promotion of natural seed sources."@en ;
+               <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Agroforestry
+:Agroforestry rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+              rdfs:comment "Growing of both trees and agricultural / horticultural crops on the same piece of land."@en ;
+              <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#AllometricBiomassEquations
 :AllometricBiomassEquations rdf:type owl:Class ;
+                            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Calculation> ;
                             rdfs:comment "Regression equations calculating biomass based on measured parameters of a tree (or shrub), for example, quantifying the relationship between above-ground tree biomass and the diameter at breast height and tree height of a specific tree species."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#AnnexIParty
 :AnnexIParty rdf:type owl:Class ;
+             rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Agent> ;
              rdfs:comment """A Party that is included in Annex I to the Convention or a Party
 that has made a notification under Article 4, paragraph 2(g) of
 the Convention."""@en .
@@ -158,6 +245,7 @@ the Convention."""@en .
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#BaselineScenario
 :BaselineScenario rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ;
                   rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the scenario for a CDM project activity or CPA that reasonably represents the anthropogenic emissions by sources of GHG that would occur in the absence of the proposed CDM project activity or CPA.
 For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R or SSC A/R CDM project activity or CPA (A/R) that reasonably represents the sum of the changes in carbon stocks in the carbon pools within the project boundary that would occur in the absence of the A/R or SSC A/R CDM project activity or CPA (A/R)."""@en ;
                   <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> .
@@ -169,7 +257,8 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R
 (a) Biomass residue;
 (b) The non-fossilized and biodegradable organic fractions of industrial and municipal wastes; and
 (c) The gases and liquids recovered from the decomposition of non-fossilized and biodegradable organic
-material."""@en .
+material."""@en ;
+         <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#BiomassExpansionFactor
@@ -184,33 +273,22 @@ has smaller revenues than the main product."""@en ;
            <http://www.w3.org/2004/02/skos/core#broader> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CPA
-:CPA rdf:type owl:Class ;
-     rdfs:label "CDM Project Activity"@en .
-
-
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CaptiveGeneration
 :CaptiveGeneration rdf:type owl:Class ;
-                   rdfs:comment "Electricity generation in a power plant that supplies electricity only to consumer(s) and not to the electricity grid. The consumer(s) are either located directly at the site of the power plant or are connected through dedicated electricity distribution line(s) with the power plant but not via the electricity grid."@en ;
-                   <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+                   rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                   rdfs:comment "Electricity generation in a power plant that supplies electricity only to consumer(s) and not to the electricity grid. The consumer(s) are either located directly at the site of the power plant or are connected through dedicated electricity distribution line(s) with the power plant but not via the electricity grid."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CarbonSequestration
 :CarbonSequestration rdf:type owl:Class ;
-                     rdfs:comment "Carbon sequestration is defined as a biological, chemical or physical process of removing carbon from the atmosphere and depositing it in a reservoir."@en ;
-                     <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+                     rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                     rdfs:comment "Carbon sequestration is defined as a biological, chemical or physical process of removing carbon from the atmosphere and depositing it in a reservoir."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Cogeneration
 :Cogeneration rdf:type owl:Class ;
-              rdfs:comment "Simultaneous production of electricity and useful thermal energy in one process."@en ;
-              <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
-
-
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Convention
-:Convention rdf:type owl:Class ;
-            rdfs:label "The United Nations Framework Convention on Climate Change"@en ;
-            <http://www.w3.org/2004/02/skos/core#prefLabel> "UNFCCC"@en .
+              rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+              rdfs:comment "Simultaneous production of electricity and useful thermal energy in one process."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#EmissionFactor
@@ -227,8 +305,19 @@ MW input are energy efficiency project activities."""@en ;
                   <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Forestry
+:Forestry rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#GHGInventorySector
 :GHGInventorySector rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#GreenfieldFacility
+:GreenfieldFacility rdf:type owl:Class ;
+                    rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                    rdfs:comment "The construction of a new facility at a location where previously no facility exists, for example, construction of new power plant at a site where previously no power generation activity exists."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#GreenhouseGas
@@ -243,12 +332,21 @@ MW input are energy efficiency project activities."""@en ;
                    "The spatial extent of the power plants that are physically connected through transmission and distribution lines to the project activity (e.g. the renewable power plant location or the consumers where electricity is being saved) and that can be dispatched without significant transmission constraints."@en .
 
 
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Harvesting
+:Harvesting rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+            rdfs:comment "Cutting and removal of trees from forests for timber or other uses. In sustainable forestry, harvesting is followed by planting or natural regeneration of the forest."@en ,
+                         """EIE: gebruik:
+cdm:harvesting a aia:Activity
+cdm:harvesting aia:isDoneBy aia:Iemand"""@af .
+
+
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#LULUCF
 :LULUCF rdf:type owl:Class ;
         rdfs:subClassOf :GHGInventorySector ;
-        owl:disjointUnionOf ( :LandUse
+        owl:disjointUnionOf ( :Forestry
+                              :LandUse
                               :LandUseChange
-                              :forestry
                             ) .
 
 
@@ -279,7 +377,8 @@ For an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emi
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#MethodologicalTool
-:MethodologicalTool rdf:type owl:Class .
+:MethodologicalTool rdf:type owl:Class ;
+                    rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#ProjectBoundary
@@ -287,6 +386,12 @@ For an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emi
                  rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the significant anthropogenic GHG emissions by sources under the control of the project participant that are reasonably attributable to the CDM project activity or CPA, as determined in accordance with the CDM rules and requirements.
 For an A/R or SSC A/R CDM project activity or CPA (A/R), geographically delineates the A/R or SSC A/R CDM project activity or CPA (A/R) under the control of the project participant as determined in accordance with the CDM rules and requirements."""@en ;
                  <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Reforestation
+:Reforestation rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+               rdfs:comment "The direct human-induced conversion of non-forested land to forested land through planting, seeding and/or the human-induced promotion of natural seed sources, on land that was forested but has been converted to non-forested land."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#RenewableEnergy
@@ -307,6 +412,7 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), geographically delineat
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#StandardisedBaseline
 :StandardisedBaseline rdf:type owl:Class ;
+                      rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ;
                       rdfs:comment "A baseline developed for a Party or a group of Parties, on a sub-national, national or group-of-countries basis rather than on a project basis, to facilitate the calculation of GHG emission reductions and removals by sinks and/or the determination of additionality for CDM project activities or PoAs, while providing assistance for assuring environmental integrity."@en ;
                       <http://www.w3.org/2004/02/skos/core#related> :StandardisedBaseline .
 
@@ -319,8 +425,8 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), geographically delineat
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Trigeneration
 :Trigeneration rdf:type owl:Class ;
-               rdfs:comment "Simultaneous generation of electrical energy and thermal energy in the form of cooling and heating in one process."@en ;
-               <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+               rdfs:comment "Simultaneous generation of electrical energy and thermal energy in the form of cooling and heating in one process."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#WasteEnergy
@@ -333,20 +439,6 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), geographically delineat
                      rdfs:subClassOf :Biomass ;
                      owl:disjointWith :below-groundBiomass ;
                      rdfs:comment "All living biomass above the soil including stem, stump, branches, bark, seeds, and foliage as well as herbaceous vegetation."@en .
-
-
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#afforestation
-:afforestation rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
-               rdfs:comment "The direct human-induced conversion of land that has not been forested for a period of at least 50 years to forested land through planting, seeding and/or the human-induced promotion of natural seed sources."@en ;
-               <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
-
-
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#agroforestry
-:agroforestry rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
-              rdfs:comment "Growing of both trees and agricultural / horticultural crops on the same piece of land."@en ;
-              <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#approvedMethodology
@@ -388,30 +480,10 @@ The definition of forest becomes applicable to a Party when:
 (b)For a non-Annex I Party, the Party selects a single minimum tree crown cover value between 10 and 30 per cent, a single minimum land area value between 0.05 and 1 hectare and a single minimum tree height value between 2 and 5 metres, as provided under paragraph 8 of the Annex to decision 5/CMP.1."""@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#forestry
-:forestry rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
-
-
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#fossilFuel
 :fossilFuel rdf:type owl:Class ;
             rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> ;
             rdfs:comment "Fuels formed by natural resources such as anaerobic decomposition of buried dead organisms (e.g. coal, oil, and natural gas)."@en .
-
-
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#greenfieldFacility
-:greenfieldFacility rdf:type owl:Class ;
-                    rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
-                    rdfs:comment "The construction of a new facility at a location where previously no facility exists, for example, construction of new power plant at a site where previously no power generation activity exists."@en .
-
-
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#harvesting
-:harvesting rdf:type owl:Class ;
-            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
-            rdfs:comment "Cutting and removal of trees from forests for timber or other uses. In sustainable forestry, harvesting is followed by planting or natural regeneration of the forest."@en ,
-                         """EIE: gebruik:
-cdm:harvesting a aia:Activity
-cdm:harvesting aia:isDoneBy aia:Iemand"""@af .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#industrialGas
@@ -431,12 +503,6 @@ cdm:harvesting aia:isDoneBy aia:Iemand"""@af .
                       rdfs:subClassOf :Biomass ;
                       owl:disjointWith :renewableBiomass ;
                       rdfs:comment "Biomass not fulfilling the conditions of renewable biomass is considered as non-renewable."@en .
-
-
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#reforestation
-:reforestation rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
-               rdfs:comment "The direct human-induced conversion of non-forested land to forested land through planting, seeding and/or the human-induced promotion of natural seed sources, on land that was forested but has been converted to non-forested land."@en .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#renewableBiomass
@@ -476,15 +542,6 @@ stocks may temporarily decrease due to harvesting); and
          rdfs:comment "Area of land whose soil is saturated with moisture either permanently or seasonally."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#A/R_CPA
-<http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#A/R_CPA> rdf:type owl:Class ;
-                                                                         rdfs:subClassOf :CPA ;
-                                                                         rdfs:comment """An afforestation or reforestation measure, operation or action
-that aims to achieve net anthropogenic GHG removals by sinks,
-whether as a whole project or as a part of a project."""@en ;
-                                                                         rdfs:label "Afforestation/reforestation activity"@en .
-
-
 #################################################################
 #    Individuals
 #################################################################
@@ -494,6 +551,16 @@ whether as a whole project or as a part of a project."""@en ;
                         <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
                rdfs:label "Grid connected renewable electricity generation"@en ;
                rdfs:seeAlso <https://cdm.unfccc.int/methodologies/DB/W3TINZ7KKWCK7L8WTXFQQOFQQH4SBK> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CPA
+:CPA rdf:type owl:NamedIndividual ,
+              <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+
+
+###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Convention
+:Convention rdf:type owl:NamedIndividual ,
+                     <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
 
 
 ###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope1
