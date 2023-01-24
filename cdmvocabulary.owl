@@ -1,12 +1,13 @@
-@prefix : <http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#> .
+@prefix : <http://purl.org/aiaontology/cdmontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@base <http://purl.org/aiaontology/cdmontology> .
 
-<http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology> rdf:type owl:Ontology .
+<http://purl.org/aiaontology/cdmontology> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
@@ -21,143 +22,143 @@ owl:equivalentClass rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#broader
-<http://www.w3.org/2004/02/skos/core#broader> rdf:type owl:AnnotationProperty .
+skos:broader rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#definition
-<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+skos:definition rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#narrower
-<http://www.w3.org/2004/02/skos/core#narrower> rdf:type owl:AnnotationProperty .
+skos:narrower rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#prefLabel
-<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
+skos:prefLabel rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#related
-<http://www.w3.org/2004/02/skos/core#related> rdf:type owl:AnnotationProperty .
+skos:related rdf:type owl:AnnotationProperty .
 
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter> rdf:type owl:ObjectProperty ;
-                                                                      rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ,
+###  http://purl.org/aiaontology#hasParameter
+<http://purl.org/aiaontology#hasParameter> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain <http://purl.org/aiaontology#Methodology> ,
                                                                                   :MethodologicalTool ;
-                                                                      rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ;
+                                                                      rdfs:range <http://purl.org/aiaontology#State> ;
                                                                       rdfs:comment "EIE haal dalk later uit ten gunste van parval syntax soos in aia"@af .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#conditionFor
+###  http://purl.org/aiaontology/cdmontology#conditionFor
 :conditionFor rdf:type owl:ObjectProperty ;
               owl:inverseOf :hasConditions ;
-              rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition> ;
-              rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> .
+              rdfs:domain <http://purl.org/aiaontology#Condition> ;
+              rdfs:range <http://purl.org/aiaontology#Methodology> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasConditions
+###  http://purl.org/aiaontology/cdmontology#hasConditions
 :hasConditions rdf:type owl:ObjectProperty ;
-               rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
-               rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition> .
+               rdfs:domain <http://purl.org/aiaontology#Methodology> ;
+               rdfs:range <http://purl.org/aiaontology#Condition> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasProjectBoundary
+###  http://purl.org/aiaontology/cdmontology#hasProjectBoundary
 :hasProjectBoundary rdf:type owl:ObjectProperty ;
-                    rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                    rdfs:domain <http://purl.org/aiaontology#Activity> ;
                     rdfs:range :ProjectBoundary .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasSectoralScope
+###  http://purl.org/aiaontology/cdmontology#hasSectoralScope
 :hasSectoralScope rdf:type owl:ObjectProperty ;
-                  rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                  rdfs:domain <http://purl.org/aiaontology#Activity> ;
                   rdfs:range :SectoralScope .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#monitoredParameter
+###  http://purl.org/aiaontology/cdmontology#monitoredParameter
 :monitoredParameter rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter> .
+                    rdfs:subPropertyOf <http://purl.org/aiaontology#hasParameter> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#toolUsedIn
+###  http://purl.org/aiaontology/cdmontology#toolUsedIn
 :toolUsedIn rdf:type owl:ObjectProperty ;
             owl:inverseOf :usesTool ;
             rdfs:domain :MethodologicalTool ;
-            rdfs:range <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+            rdfs:range <http://purl.org/aiaontology#Activity> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#usesTool
+###  http://purl.org/aiaontology/cdmontology#usesTool
 :usesTool rdf:type owl:ObjectProperty ;
-          rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+          rdfs:domain <http://purl.org/aiaontology#Activity> ;
           rdfs:range :MethodologicalTool .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#validationParameter
+###  http://purl.org/aiaontology/cdmontology#validationParameter
 :validationParameter rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#hasParameter> .
+                     rdfs:subPropertyOf <http://purl.org/aiaontology#hasParameter> .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#calculatedExAnte
+###  http://purl.org/aiaontology/cdmontology#calculatedExAnte
 :calculatedExAnte rdf:type owl:DatatypeProperty ;
-                  rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ,
+                  rdfs:domain <http://purl.org/aiaontology#State> ,
                               :EmissionFactor ;
                   rdfs:range xsd:boolean ;
                   rdfs:comment """If true, the emission factor is calculated ex ante (i.e. before the implementation of the project).
 If false, the emission factor is calculated ex post."""@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasBaselineScenario
+###  http://purl.org/aiaontology/cdmontology#hasBaselineScenario
 :hasBaselineScenario rdf:type owl:DatatypeProperty ;
-                     rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                     rdfs:domain <http://purl.org/aiaontology#Methodology> ;
                      rdfs:range xsd:string ;
                      owl:propertyDisjointWith :hasProjectScenario ;
-                     <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> .
+                     skos:related <http://purl.org/aiaontology#State> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasEmissionMitigationType
+###  http://purl.org/aiaontology/cdmontology#hasEmissionMitigationType
 :hasEmissionMitigationType rdf:type owl:DatatypeProperty ;
-                           rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                           rdfs:domain <http://purl.org/aiaontology#Methodology> ;
                            rdfs:range xsd:string ;
                            rdfs:comment "FIX: maak dalk later 'n object property"@af .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasProjectScenario
+###  http://purl.org/aiaontology/cdmontology#hasProjectScenario
 :hasProjectScenario rdf:type owl:DatatypeProperty ;
-                    rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                    rdfs:domain <http://purl.org/aiaontology#Methodology> ;
                     rdfs:range xsd:string ;
-                    <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> .
+                    skos:related <http://purl.org/aiaontology#State> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasScale
+###  http://purl.org/aiaontology/cdmontology#hasScale
 :hasScale rdf:type owl:DatatypeProperty ;
-          rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ,
-                      <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+          rdfs:domain <http://purl.org/aiaontology#Activity> ,
+                      <http://purl.org/aiaontology#Methodology> ;
           rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasTypicalProjects
+###  http://purl.org/aiaontology/cdmontology#hasTypicalProjects
 :hasTypicalProjects rdf:type owl:DatatypeProperty ;
-                    rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                    rdfs:domain <http://purl.org/aiaontology#Methodology> ;
                     rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#hasVersion
+###  http://purl.org/aiaontology/cdmontology#hasVersion
 :hasVersion rdf:type owl:DatatypeProperty ;
-            rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ,
+            rdfs:domain <http://purl.org/aiaontology#Methodology> ,
                         :MethodologicalTool ;
             rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#typeOfMitigationAction
+###  http://purl.org/aiaontology/cdmontology#typeOfMitigationAction
 :typeOfMitigationAction rdf:type owl:DatatypeProperty ;
-                        rdfs:domain <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                        rdfs:domain <http://purl.org/aiaontology#Methodology> ;
                         rdfs:range xsd:string ;
                         rdfs:label "Type of GHG emissions mitigation action"@en .
 
@@ -166,182 +167,182 @@ If false, the emission factor is calculated ex post."""@en .
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Activity
+<http://purl.org/aiaontology#Activity> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Agent
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Agent> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Agent
+<http://purl.org/aiaontology#Agent> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Calculation
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Calculation> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Calculation
+<http://purl.org/aiaontology#Calculation> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Condition> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Condition
+<http://purl.org/aiaontology#Condition> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Environment
+<http://purl.org/aiaontology#Environment> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> rdf:type owl:Class ;
-                                                                     rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
+###  http://purl.org/aiaontology#Methodology
+<http://purl.org/aiaontology#Methodology> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://purl.org/aiaontology#Procedure> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Output
+<http://purl.org/aiaontology#Output> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Procedure
+<http://purl.org/aiaontology#Procedure> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> rdf:type owl:Class .
+###  http://purl.org/aiaontology#Resource
+<http://purl.org/aiaontology#Resource> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State
-<http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> rdf:type owl:Class .
+###  http://purl.org/aiaontology#State
+<http://purl.org/aiaontology#State> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Additional
+###  http://purl.org/aiaontology/cdmontology#Additional
 :Additional rdf:type owl:Class ;
-            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> ;
+            rdfs:subClassOf <http://purl.org/aiaontology#Output> ;
             rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the effect of the CDM project activity or CPA to reduce anthropogenic GHG emissions below the level that would have occurred in the absence of the CDM project activity or CPA; or
 For an A/R or SSC CPA (A/R), the effect of the A/R or SSC A/R CDM project activity or CPA (A/R) to increase actual net GHG removals by sinks above the sum of the changes in carbon stocks in the carbon pools within the project boundary that would have occurred in the absence of the A/R or SSC CPA (A/R).
 Whether or not a CDM project activity or CPA is additional is determined in accordance with the CDM rules and requirements."""@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Afforestation
+###  http://purl.org/aiaontology/cdmontology#Afforestation
 :Afforestation rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+               rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
                rdfs:comment "The direct human-induced conversion of land that has not been forested for a period of at least 50 years to forested land through planting, seeding and/or the human-induced promotion of natural seed sources."@en ;
-               <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+               skos:narrower <http://purl.org/aiaontology#Activity> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Agroforestry
+###  http://purl.org/aiaontology/cdmontology#Agroforestry
 :Agroforestry rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+              rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
               rdfs:comment "Growing of both trees and agricultural / horticultural crops on the same piece of land."@en ;
-              <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+              skos:narrower <http://purl.org/aiaontology#Activity> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#AllometricBiomassEquations
+###  http://purl.org/aiaontology/cdmontology#AllometricBiomassEquations
 :AllometricBiomassEquations rdf:type owl:Class ;
-                            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Calculation> ;
+                            rdfs:subClassOf <http://purl.org/aiaontology#Calculation> ;
                             rdfs:comment "Regression equations calculating biomass based on measured parameters of a tree (or shrub), for example, quantifying the relationship between above-ground tree biomass and the diameter at breast height and tree height of a specific tree species."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#AnnexIParty
+###  http://purl.org/aiaontology/cdmontology#AnnexIParty
 :AnnexIParty rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Agent> ;
+             rdfs:subClassOf <http://purl.org/aiaontology#Agent> ;
              rdfs:comment """A Party that is included in Annex I to the Convention or a Party
 that has made a notification under Article 4, paragraph 2(g) of
 the Convention."""@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#BaselineScenario
+###  http://purl.org/aiaontology/cdmontology#BaselineScenario
 :BaselineScenario rdf:type owl:Class ;
-                  rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ;
+                  rdfs:subClassOf <http://purl.org/aiaontology#State> ;
                   rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the scenario for a CDM project activity or CPA that reasonably represents the anthropogenic emissions by sources of GHG that would occur in the absence of the proposed CDM project activity or CPA.
 For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R or SSC A/R CDM project activity or CPA (A/R) that reasonably represents the sum of the changes in carbon stocks in the carbon pools within the project boundary that would occur in the absence of the A/R or SSC A/R CDM project activity or CPA (A/R)."""@en ;
-                  <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> .
+                  skos:related <http://purl.org/aiaontology#State> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Biomass
+###  http://purl.org/aiaontology/cdmontology#Biomass
 :Biomass rdf:type owl:Class ;
          rdfs:comment """Non-fossilized and biodegradable organic material originating from plants, animals and micro-organisms, including:
 (a) Biomass residue;
 (b) The non-fossilized and biodegradable organic fractions of industrial and municipal wastes; and
 (c) The gases and liquids recovered from the decomposition of non-fossilized and biodegradable organic
 material."""@en ;
-         <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> .
+         skos:related <http://purl.org/aiaontology#Environment> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#BiomassExpansionFactor
+###  http://purl.org/aiaontology/cdmontology#BiomassExpansionFactor
 :BiomassExpansionFactor rdf:type owl:Class ;
                         rdfs:comment "Ratio of total stand biomass to stand (merchantable) volume (e.g. as derived from forest yield tables)."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Byproduct
+###  http://purl.org/aiaontology/cdmontology#Byproduct
 :Byproduct rdf:type owl:Class ;
            rdfs:comment """A product that is produced along with the main product which
 has smaller revenues than the main product."""@en ;
-           <http://www.w3.org/2004/02/skos/core#broader> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+           skos:broader <http://purl.org/aiaontology#Output> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CaptiveGeneration
+###  http://purl.org/aiaontology/cdmontology#CaptiveGeneration
 :CaptiveGeneration rdf:type owl:Class ;
-                   rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                   rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
                    rdfs:comment "Electricity generation in a power plant that supplies electricity only to consumer(s) and not to the electricity grid. The consumer(s) are either located directly at the site of the power plant or are connected through dedicated electricity distribution line(s) with the power plant but not via the electricity grid."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CarbonSequestration
+###  http://purl.org/aiaontology/cdmontology#CarbonSequestration
 :CarbonSequestration rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                     rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
                      rdfs:comment "Carbon sequestration is defined as a biological, chemical or physical process of removing carbon from the atmosphere and depositing it in a reservoir."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Cogeneration
+###  http://purl.org/aiaontology/cdmontology#Cogeneration
 :Cogeneration rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+              rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
               rdfs:comment "Simultaneous production of electricity and useful thermal energy in one process."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#EmissionFactor
+###  http://purl.org/aiaontology/cdmontology#EmissionFactor
 :EmissionFactor rdf:type owl:Class ;
                 rdfs:comment "EIE check related"@af ,
                              "Measure of the average amount of GHG emitted to the atmosphere by a specific process, fuel, equipment, or source."@en ;
-                <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#ParVal> .
+                skos:related <http://purl.org/aiaontology#ParVal> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#EnergyEfficiency
+###  http://purl.org/aiaontology/cdmontology#EnergyEfficiency
 :EnergyEfficiency rdf:type owl:Class ;
                   rdfs:comment """Energy efficiency is defined as the improvement in the service provided per unit power, for example, project activities which increase unit output of traction, work, electricity, heat, light (or fuel) per
 MW input are energy efficiency project activities."""@en ;
-                  <http://www.w3.org/2004/02/skos/core#narrower> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+                  skos:narrower <http://purl.org/aiaontology#Output> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Forestry
+###  http://purl.org/aiaontology/cdmontology#Forestry
 :Forestry rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+          rdfs:subClassOf <http://purl.org/aiaontology#Activity> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#GHGInventorySector
+###  http://purl.org/aiaontology/cdmontology#GHGInventorySector
 :GHGInventorySector rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#GreenfieldFacility
+###  http://purl.org/aiaontology/cdmontology#GreenfieldFacility
 :GreenfieldFacility rdf:type owl:Class ;
-                    rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+                    rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
                     rdfs:comment "The construction of a new facility at a location where previously no facility exists, for example, construction of new power plant at a site where previously no power generation activity exists."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#GreenhouseGas
+###  http://purl.org/aiaontology/cdmontology#GreenhouseGas
 :GreenhouseGas rdf:type owl:Class ;
                rdfs:comment "A greenhouse gas listed in Annex A to the Kyoto Protocol, unless otherwise specified in a particular methodology."@en ;
-               <http://www.w3.org/2004/02/skos/core#prefLabel> "GHG"@en .
+               skos:prefLabel "GHG"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Grid
+###  http://purl.org/aiaontology/cdmontology#Grid
 :Grid rdf:type owl:Class ;
       rdfs:comment "FIX aan wat van aia is hierdie related?"@en ,
                    "The spatial extent of the power plants that are physically connected through transmission and distribution lines to the project activity (e.g. the renewable power plant location or the consumers where electricity is being saved) and that can be dispatched without significant transmission constraints."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Harvesting
+###  http://purl.org/aiaontology/cdmontology#Harvesting
 :Harvesting rdf:type owl:Class ;
-            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+            rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
             rdfs:comment "Cutting and removal of trees from forests for timber or other uses. In sustainable forestry, harvesting is followed by planting or natural regeneration of the forest."@en ,
                          """EIE: gebruik:
 cdm:harvesting a aia:Activity
 cdm:harvesting aia:isDoneBy aia:Iemand"""@af .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#LULUCF
+###  http://purl.org/aiaontology/cdmontology#LULUCF
 :LULUCF rdf:type owl:Class ;
         rdfs:subClassOf :GHGInventorySector ;
         owl:disjointUnionOf ( :Forestry
@@ -350,124 +351,124 @@ cdm:harvesting aia:isDoneBy aia:Iemand"""@af .
                             ) .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#LandUse
+###  http://purl.org/aiaontology/cdmontology#LandUse
 :LandUse rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#LandUseChange
+###  http://purl.org/aiaontology/cdmontology#LandUseChange
 :LandUseChange rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Leakage
+###  http://purl.org/aiaontology/cdmontology#Leakage
 :Leakage rdf:type owl:Class ;
          rdfs:comment """For a CDM project activity (non-A/R) or PoA (non-A/R), the net change of anthropogenic emissions by sources of GHG which occurs outside the project boundary, and which is measurable and attributable to the CDM project activity or PoA, as applicable.
 For an A/R or SSC A/R CDM project activity or PoA (A/R), the increase in GHG emissions by sources or decrease in carbon stock in carbon pools which occurs outside the boundary of an A/R or SSC A/R CDM project activity or PoA (A/R), as applicable, which is measurable and attributable to the A/R or SSC A/R CDM project activity or PoA (A/R), as applicable."""@en ;
-         <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+         skos:related <http://purl.org/aiaontology#Output> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#LowCarbonElectricity
+###  http://purl.org/aiaontology/cdmontology#LowCarbonElectricity
 :LowCarbonElectricity rdf:type owl:Class ;
                       rdfs:comment "Electricity that is generated using a less-GHG-intensive fuel than in the baseline (for example, electricity generated using natural gas in the project is low carbon electricity, when coal is used in the baseline for electricity generation)."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#MeritOrder
+###  http://purl.org/aiaontology/cdmontology#MeritOrder
 :MeritOrder rdf:type owl:Class ;
             rdfs:comment "A way of ranking existing power plants in ascending order of their short-run marginal costs of electricity generation, so that those with the lowest marginal costs are the first ones to be brought on line to meet demand and the plants with the highest marginal costs are the last to be brought on line."@en ;
-            <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
+            skos:related <http://purl.org/aiaontology#Procedure> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#MethodologicalTool
+###  http://purl.org/aiaontology/cdmontology#MethodologicalTool
 :MethodologicalTool rdf:type owl:Class ;
-                    rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
+                    rdfs:subClassOf <http://purl.org/aiaontology#Procedure> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#ProjectBoundary
+###  http://purl.org/aiaontology/cdmontology#ProjectBoundary
 :ProjectBoundary rdf:type owl:Class ;
                  rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the significant anthropogenic GHG emissions by sources under the control of the project participant that are reasonably attributable to the CDM project activity or CPA, as determined in accordance with the CDM rules and requirements.
 For an A/R or SSC A/R CDM project activity or CPA (A/R), geographically delineates the A/R or SSC A/R CDM project activity or CPA (A/R) under the control of the project participant as determined in accordance with the CDM rules and requirements."""@en ;
-                 <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+                 skos:related <http://purl.org/aiaontology#Output> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Reforestation
+###  http://purl.org/aiaontology/cdmontology#Reforestation
 :Reforestation rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+               rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
                rdfs:comment "The direct human-induced conversion of non-forested land to forested land through planting, seeding and/or the human-induced promotion of natural seed sources, on land that was forested but has been converted to non-forested land."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#RenewableEnergy
+###  http://purl.org/aiaontology/cdmontology#RenewableEnergy
 :RenewableEnergy rdf:type owl:Class ;
                  rdfs:comment "Energy that comes from solar, wind, rain, tides, geothermal heat and biological sources which are renewable (naturally replenished) in nature."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#SectoralScope
+###  http://purl.org/aiaontology/cdmontology#SectoralScope
 :SectoralScope rdf:type owl:Class ;
                rdfs:comment "The category of GHG source sectors or groups of activities that apply to CDM project activities or PoAs. It is based on the sectors and source categories set out in Annex A to the Kyoto Protocol. A CDM project activity or PoA may fall within more than one sectoral scope."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#SoilOrganicCarbon
+###  http://purl.org/aiaontology/cdmontology#SoilOrganicCarbon
 :SoilOrganicCarbon rdf:type owl:Class ;
                    rdfs:comment "Organic carbon in mineral and organic soils (including peat) to a specified depth chosen by the country and applied consistently through the time series. Live fine roots (of less than the suggested diameter limit for below-ground biomass) are included with soil organic matter where they cannot be distinguished from it empirically."@en ;
-                   <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> .
+                   skos:related <http://purl.org/aiaontology#Environment> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#StandardisedBaseline
+###  http://purl.org/aiaontology/cdmontology#StandardisedBaseline
 :StandardisedBaseline rdf:type owl:Class ;
-                      rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#State> ;
+                      rdfs:subClassOf <http://purl.org/aiaontology#State> ;
                       rdfs:comment "A baseline developed for a Party or a group of Parties, on a sub-national, national or group-of-countries basis rather than on a project basis, to facilitate the calculation of GHG emission reductions and removals by sinks and/or the determination of additionality for CDM project activities or PoAs, while providing assistance for assuring environmental integrity."@en ;
-                      <http://www.w3.org/2004/02/skos/core#related> :StandardisedBaseline .
+                      skos:related :StandardisedBaseline .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#SuppressedDemand
+###  http://purl.org/aiaontology/cdmontology#SuppressedDemand
 :SuppressedDemand rdf:type owl:Class ;
                   rdfs:comment "A scenario where future anthropogenic emissions by sources are projected to rise above current levels, due to the specific circumstances of the host Party."@en ;
-                  <http://www.w3.org/2004/02/skos/core#related> <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Output> .
+                  skos:related <http://purl.org/aiaontology#Output> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Trigeneration
+###  http://purl.org/aiaontology/cdmontology#Trigeneration
 :Trigeneration rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> ;
+               rdfs:subClassOf <http://purl.org/aiaontology#Activity> ;
                rdfs:comment "Simultaneous generation of electrical energy and thermal energy in the form of cooling and heating in one process."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#WasteEnergy
+###  http://purl.org/aiaontology/cdmontology#WasteEnergy
 :WasteEnergy rdf:type owl:Class ;
              rdfs:comment "Energy contained in a residual stream from industrial processes in the form of heat, chemical energy or pressure, for which it can be demonstrated that it would have been wasted in the absence of the project activity. Examples of waste energy include the energy contained in gases flared or released into the atmosphere, the heat or pressure from a residual stream not recovered (i.e. wasted)."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#above-groundBiomass
+###  http://purl.org/aiaontology/cdmontology#above-groundBiomass
 :above-groundBiomass rdf:type owl:Class ;
                      rdfs:subClassOf :Biomass ;
                      owl:disjointWith :below-groundBiomass ;
                      rdfs:comment "All living biomass above the soil including stem, stump, branches, bark, seeds, and foliage as well as herbaceous vegetation."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#approvedMethodology
+###  http://purl.org/aiaontology/cdmontology#approvedMethodology
 :approvedMethodology rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                     rdfs:subClassOf <http://purl.org/aiaontology#Methodology> ;
                      rdfs:comment "A methodology that has been approved by the Board for application to CDM project activities or CPAs. Approved methodologies are publicly available on the UNFCCC CDM website."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#below-groundBiomass
+###  http://purl.org/aiaontology/cdmontology#below-groundBiomass
 :below-groundBiomass rdf:type owl:Class ;
                      rdfs:subClassOf :Biomass ;
                      rdfs:comment "All living biomass of roots. Fine roots of less than (suggested) 2 mm diameter are often excluded because these often cannot be distinguished empirically from soil organic matter or litter."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#deadwood
+###  http://purl.org/aiaontology/cdmontology#deadwood
 :deadwood rdf:type owl:Class ;
           rdfs:subClassOf :below-groundBiomass ;
           rdfs:comment "All non-living woody biomass not contained in the litter, either standing, lying on the ground, or in the soil. Dead wood includes wood lying on the surface, dead roots, and stumps larger than or equal to 10 cm in diameter or any other diameter used by the country."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#feedstock
+###  http://purl.org/aiaontology/cdmontology#feedstock
 :feedstock rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> ;
+           rdfs:subClassOf <http://purl.org/aiaontology#Resource> ;
            rdfs:comment "Gaseous, liquid or solid raw material used in manufacturing."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#forest
+###  http://purl.org/aiaontology/cdmontology#forest
 :forest rdf:type owl:Class ;
-        rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> ;
+        rdfs:subClassOf <http://purl.org/aiaontology#Environment> ;
         rdfs:comment """A minimum area of land of 0.05 –1.0 hectare with tree crown cover (or equivalent stocking level) of more than 10-30 per cent with trees with the potential to reach a minimum height of 2 – 5 metres at maturity in situ and may include:
 (a) Either closed forest formations where trees of various storeys and undergrowth cover a high
 proportion of the ground or open forest;
@@ -480,32 +481,32 @@ The definition of forest becomes applicable to a Party when:
 (b)For a non-Annex I Party, the Party selects a single minimum tree crown cover value between 10 and 30 per cent, a single minimum land area value between 0.05 and 1 hectare and a single minimum tree height value between 2 and 5 metres, as provided under paragraph 8 of the Annex to decision 5/CMP.1."""@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#fossilFuel
+###  http://purl.org/aiaontology/cdmontology#fossilFuel
 :fossilFuel rdf:type owl:Class ;
-            rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Resource> ;
+            rdfs:subClassOf <http://purl.org/aiaontology#Resource> ;
             rdfs:comment "Fuels formed by natural resources such as anaerobic decomposition of buried dead organisms (e.g. coal, oil, and natural gas)."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#industrialGas
+###  http://purl.org/aiaontology/cdmontology#industrialGas
 :industrialGas rdf:type owl:Class ;
                rdfs:subClassOf :GreenhouseGas ;
                rdfs:comment "Greenhouse gases originating from chemical production processes that are not naturally occurring. In addition, N2O from chemical production processes is included in this group of greenhouse gases."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#litter
+###  http://purl.org/aiaontology/cdmontology#litter
 :litter rdf:type owl:Class ;
         rdfs:subClassOf :below-groundBiomass ;
         rdfs:comment "Includes all non-living biomass with a diameter less than a minimum diameter chosen by the country (for example 10 cm), lying dead, in various states of decomposition above the mineral or organic soil. This includes the litter, fumic, and humic layers. Live fine roots (of less than the suggested diameter limit for below-ground biomass) are included in litter where they cannot be distinguished from it empirically."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#non-renewableBiomass
+###  http://purl.org/aiaontology/cdmontology#non-renewableBiomass
 :non-renewableBiomass rdf:type owl:Class ;
                       rdfs:subClassOf :Biomass ;
                       owl:disjointWith :renewableBiomass ;
                       rdfs:comment "Biomass not fulfilling the conditions of renewable biomass is considered as non-renewable."@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#renewableBiomass
+###  http://purl.org/aiaontology/cdmontology#renewableBiomass
 :renewableBiomass rdf:type owl:Class ;
                   rdfs:subClassOf :Biomass ;
                   rdfs:comment """Biomass which meets one of the following conditions:
@@ -531,14 +532,14 @@ stocks may temporarily decrease due to harvesting); and
 (e) The biomass is the non-fossil fraction of an industrial or municipal waste."""@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#residueBiomass
+###  http://purl.org/aiaontology/cdmontology#residueBiomass
 :residueBiomass rdf:type owl:Class ;
                 rdfs:subClassOf :Biomass .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#wetland
+###  http://purl.org/aiaontology/cdmontology#wetland
 :wetland rdf:type owl:Class ;
-         rdfs:subClassOf <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Environment> ;
+         rdfs:subClassOf <http://purl.org/aiaontology#Environment> ;
          rdfs:comment "Area of land whose soil is saturated with moisture either permanently or seasonally."@en .
 
 
@@ -546,114 +547,114 @@ stocks may temporarily decrease due to harvesting); and
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#AMS-I.D.-18.0
+###  http://purl.org/aiaontology/cdmontology#AMS-I.D.-18.0
 :AMS-I.D.-18.0 rdf:type owl:NamedIndividual ,
-                        <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Methodology> ;
+                        <http://purl.org/aiaontology#Methodology> ;
                rdfs:label "Grid connected renewable electricity generation"@en ;
                rdfs:seeAlso <https://cdm.unfccc.int/methodologies/DB/W3TINZ7KKWCK7L8WTXFQQOFQQH4SBK> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#CPA
+###  http://purl.org/aiaontology/cdmontology#CPA
 :CPA rdf:type owl:NamedIndividual ,
-              <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Activity> .
+              <http://purl.org/aiaontology#Activity> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#Convention
+###  http://purl.org/aiaontology/cdmontology#Convention
 :Convention rdf:type owl:NamedIndividual ,
-                     <http://www.semanticweb.org/lucia/ontologies/2023/0/aia#Procedure> .
+                     <http://purl.org/aiaontology#Procedure> .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope1
+###  http://purl.org/aiaontology/cdmontology#sectoralScope1
 :sectoralScope1 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Energy industries (renewable - / non-renewable sources)"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope10
+###  http://purl.org/aiaontology/cdmontology#sectoralScope10
 :sectoralScope10 rdf:type owl:NamedIndividual ,
                           :SectoralScope ;
                  rdfs:label "Fugitive emissions from fuels (solid, oil and gas)"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope11
+###  http://purl.org/aiaontology/cdmontology#sectoralScope11
 :sectoralScope11 rdf:type owl:NamedIndividual ,
                           :SectoralScope ;
                  rdfs:label "Fugitive emissions from production and consumption of halocarbons and sulphur hexafluoride"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope12
+###  http://purl.org/aiaontology/cdmontology#sectoralScope12
 :sectoralScope12 rdf:type owl:NamedIndividual ,
                           :SectoralScope ;
                  rdfs:label "Solvent use"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope13
+###  http://purl.org/aiaontology/cdmontology#sectoralScope13
 :sectoralScope13 rdf:type owl:NamedIndividual ,
                           :SectoralScope ;
                  rdfs:label "Waste handling and disposal"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope14
+###  http://purl.org/aiaontology/cdmontology#sectoralScope14
 :sectoralScope14 rdf:type owl:NamedIndividual ,
                           :SectoralScope ;
                  rdfs:label "Afforestation and reforestation"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope15
+###  http://purl.org/aiaontology/cdmontology#sectoralScope15
 :sectoralScope15 rdf:type owl:NamedIndividual ,
                           :SectoralScope ;
                  rdfs:label "Agriculture"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope2
+###  http://purl.org/aiaontology/cdmontology#sectoralScope2
 :sectoralScope2 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Energy distribution"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope3
+###  http://purl.org/aiaontology/cdmontology#sectoralScope3
 :sectoralScope3 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Energy demand"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope4
+###  http://purl.org/aiaontology/cdmontology#sectoralScope4
 :sectoralScope4 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Manufacturing Industries"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope5
+###  http://purl.org/aiaontology/cdmontology#sectoralScope5
 :sectoralScope5 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Chemical Industries"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope6
+###  http://purl.org/aiaontology/cdmontology#sectoralScope6
 :sectoralScope6 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Construction"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope7
+###  http://purl.org/aiaontology/cdmontology#sectoralScope7
 :sectoralScope7 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Transport"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope8
+###  http://purl.org/aiaontology/cdmontology#sectoralScope8
 :sectoralScope8 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Mining/mineral production"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#sectoralScope9
+###  http://purl.org/aiaontology/cdmontology#sectoralScope9
 :sectoralScope9 rdf:type owl:NamedIndividual ,
                          :SectoralScope ;
                 rdfs:label "Metal production"@en .
 
 
-###  http://www.semanticweb.org/lucia/ontologies/2023/0/cdmontology#tool07
+###  http://purl.org/aiaontology/cdmontology#tool07
 :tool07 rdf:type owl:NamedIndividual ,
                  :MethodologicalTool ;
         rdfs:label "Tool to calculate the emission factor for an electricity system"@en ;
