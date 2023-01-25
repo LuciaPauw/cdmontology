@@ -236,8 +236,7 @@ Whether or not a CDM project activity or CPA is additional is determined in acco
 :BaselineScenario rdf:type owl:Class ;
                   rdfs:subClassOf aia:State ;
                   rdfs:comment """For a CDM project activity (non-A/R) or CPA (non-A/R), the scenario for a CDM project activity or CPA that reasonably represents the anthropogenic emissions by sources of GHG that would occur in the absence of the proposed CDM project activity or CPA.
-For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R or SSC A/R CDM project activity or CPA (A/R) that reasonably represents the sum of the changes in carbon stocks in the carbon pools within the project boundary that would occur in the absence of the A/R or SSC A/R CDM project activity or CPA (A/R)."""@en ;
-                  skos:related aia:State .
+For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R or SSC A/R CDM project activity or CPA (A/R) that reasonably represents the sum of the changes in carbon stocks in the carbon pools within the project boundary that would occur in the absence of the A/R or SSC A/R CDM project activity or CPA (A/R)."""@en .
 
 
 ###  http://purl.org/aiaontology/cdmvocabulary#Biomass
@@ -258,6 +257,12 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R
 :Byproduct rdf:type owl:Class ;
            rdfs:comment "A product that is produced along with the main product which has smaller revenues than the main product."@en ;
            skos:broader aia:Output .
+
+
+###  http://purl.org/aiaontology/cdmvocabulary#CPA
+:CPA rdf:type owl:Class ;
+     rdfs:subClassOf aia:Activity ;
+     rdfs:comment "CDM Project Activity"@en .
 
 
 ###  http://purl.org/aiaontology/cdmvocabulary#CaptiveGeneration
@@ -533,11 +538,6 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R
                         aia:Procedure ;
                rdfs:label "Grid connected renewable electricity generation"@en ;
                rdfs:seeAlso <https://cdm.unfccc.int/methodologies/DB/W3TINZ7KKWCK7L8WTXFQQOFQQH4SBK> .
-
-
-###  http://purl.org/aiaontology/cdmvocabulary#CPA
-:CPA rdf:type owl:NamedIndividual ,
-              aia:Activity .
 
 
 ###  http://purl.org/aiaontology/cdmvocabulary#Convention
