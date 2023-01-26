@@ -1,4 +1,4 @@
-@prefix : <http://purl.org/aiaontology/cdmvocabulary> .
+@prefix : <http://purl.org/aiaontology/cdmvocabulary#> .
 @prefix aia: <http://purl.org/aiaontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -232,6 +232,12 @@ Whether or not a CDM project activity or CPA is additional is determined in acco
              rdfs:comment "A Party that is included in Annex I to the Convention or a Party that has made a notification under Article 4, paragraph 2(g) of the Convention."@en .
 
 
+###  http://purl.org/aiaontology/cdmvocabulary#ApprovedMethodology
+:ApprovedMethodology rdf:type owl:Class ;
+                     rdfs:subClassOf aia:Procedure ;
+                     rdfs:comment "A methodology that has been approved by the Board for application to CDM project activities or CPAs. Approved methodologies are publicly available on the UNFCCC CDM website."@en .
+
+
 ###  http://purl.org/aiaontology/cdmvocabulary#BaselineScenario
 :BaselineScenario rdf:type owl:Class ;
                   rdfs:subClassOf aia:State ;
@@ -376,6 +382,11 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R
                  skos:related aia:Output .
 
 
+###  http://purl.org/aiaontology/cdmvocabulary#ProjectScenario
+:ProjectScenario rdf:type owl:Class ;
+                 rdfs:subClassOf aia:State .
+
+
 ###  http://purl.org/aiaontology/cdmvocabulary#Reforestation
 :Reforestation rdf:type owl:Class ;
                rdfs:subClassOf aia:Activity ;
@@ -426,12 +437,6 @@ For an A/R or SSC A/R CDM project activity or CPA (A/R), the scenario for an A/R
                      rdfs:subClassOf :Biomass ;
                      owl:disjointWith :below-groundBiomass ;
                      rdfs:comment "All living biomass above the soil including stem, stump, branches, bark, seeds, and foliage as well as herbaceous vegetation."@en .
-
-
-###  http://purl.org/aiaontology/cdmvocabulary#approvedMethodology
-:approvedMethodology rdf:type owl:Class ;
-                     rdfs:subClassOf aia:Procedure ;
-                     rdfs:comment "A methodology that has been approved by the Board for application to CDM project activities or CPAs. Approved methodologies are publicly available on the UNFCCC CDM website."@en .
 
 
 ###  http://purl.org/aiaontology/cdmvocabulary#below-groundBiomass
